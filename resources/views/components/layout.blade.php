@@ -17,9 +17,8 @@
 
         <!-- Desktop Nav -->
         <nav class="hidden md:flex space-x-8 text-gray-700 font-medium">
-          <a href="/" class="hover:text-blue-600 transition">Home</a>
-          <a href="/about" class="hover:text-blue-600 transition">About</a>
-          <a href="/contact" class="hover:text-blue-600 transition">Contact</a>
+          <a href="/" class="hover:text-blue-600 transition {{ request()->is('/') ? 'text-blue-600 font-bold' : '' }}">Home</a>
+          <a href="/jobs" class="hover:text-blue-600 transition {{ request()->is('jobs') ? 'text-blue-600 font-bold' : '' }}">Jobs</a>
         </nav>
 
         <!-- Mobile Menu Button -->
@@ -35,9 +34,8 @@
     <!-- Mobile Nav -->
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t shadow-md">
       <nav class="flex flex-col px-4 py-3 space-y-2 text-gray-700 font-medium">
-        <a href="/" class="hover:text-blue-600 transition">Home</a>
-        <a href="/about" class="hover:text-blue-600 transition">About</a>
-        <a href="/contact" class="hover:text-blue-600 transition">Contact</a>
+        <a href="/" class="hover:text-blue-600 transition {{ request()->is('/') ? 'text-blue-600 font-bold' : '' }}">Home</a>
+        <a href="/jobs" class="hover:text-blue-600 transition {{ request()->is('jobs') ? 'text-blue-600 font-bold' : '' }}">Jobs</a>
       </nav>
     </div>
   </header>
@@ -51,9 +49,7 @@
       <p class="text-lg sm:text-xl text-gray-600 mb-10">
         {{ $slot }}
       </p>
-      <a href="/about" class="px-6 py-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition">
-        Learn More
-      </a>
+     
     </div>
   </section>
 
