@@ -1,4 +1,4 @@
-@props(['heading' => 'Welcome']) <!-- Default heading -->
+@props(['heading' => 'Welcome'])
 
 <!DOCTYPE html>
 <html lang="en">
