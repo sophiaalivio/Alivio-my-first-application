@@ -1,9 +1,11 @@
+@props(['heading' => 'Welcome']) <!-- Default heading -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Website</title>
+  <title>{{ $heading }}</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white text-gray-800">
@@ -18,7 +20,7 @@
         <!-- Desktop Nav -->
         <nav class="hidden md:flex space-x-8 text-gray-700 font-medium">
           <a href="/" class="hover:text-blue-600 transition {{ request()->is('/') ? 'text-blue-600 font-bold' : '' }}">Home</a>
-          <a href="/jobs" class="hover:text-blue-600 transition {{ request()->is('jobs') ? 'text-blue-600 font-bold' : '' }}">Jobs</a>
+          <a href="/jobs" class="hover:text-blue-600 transition {{ request()->is('jobs*') ? 'text-blue-600 font-bold' : '' }}">Jobs</a>
         </nav>
 
         <!-- Mobile Menu Button -->
@@ -35,23 +37,22 @@
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t shadow-md">
       <nav class="flex flex-col px-4 py-3 space-y-2 text-gray-700 font-medium">
         <a href="/" class="hover:text-blue-600 transition {{ request()->is('/') ? 'text-blue-600 font-bold' : '' }}">Home</a>
-        <a href="/jobs" class="hover:text-blue-600 transition {{ request()->is('jobs') ? 'text-blue-600 font-bold' : '' }}">Jobs</a>
+        <a href="/jobs" class="hover:text-blue-600 transition {{ request()->is('jobs*') ? 'text-blue-600 font-bold' : '' }}">Jobs</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-blue-50 to-blue-100">
+  <!-- Hero / Main Content Section -->
+  <main class="bg-gradient-to-r from-blue-50 to-blue-100 min-h-[70vh] flex flex-col justify-center">
     <div class="max-w-7xl mx-auto px-4 py-24 text-center">
       <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-800 mb-6 leading-tight">
         {{ $heading }}
       </h1>
-      <p class="text-lg sm:text-xl text-gray-600 mb-10">
+      <div class="text-lg sm:text-xl text-gray-600 mb-10">
         {{ $slot }}
-      </p>
-     
+      </div>
     </div>
-  </section>
+  </main>
 
   <!-- Footer -->
   <footer class="bg-white border-t mt-20">
@@ -64,6 +65,7 @@
   <script>
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });

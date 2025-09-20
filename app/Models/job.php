@@ -2,39 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Job
+class Job extends Model
 {
-    public static function all()
+    use HasFactory;
+
+    // Tell Laravel to use our job_listings table
+    protected $table = 'job_listings';
+
+    // Allow mass assignment
+    protected $fillable = ['title', 'salary', 'employer_id'];
+
+    // Each job belongs to an employer
+    public function employer()
     {
-        return [
-            [
-                'id' => 1,
-                'title' => 'Director',
-                'salary' => '$50,000'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Programmer',
-                'salary' => '$10,000'
-            ],
-            [
-                'id' => 3,
-                'title' => 'Teacher',
-                'salary' => '$40,000'
-            ],
-        ];
-    }
-
-    public static function find($id)
-    {
-        $job = Arr::first(static::all(), fn($job) => $job['id'] == $id);
-
-        if (! $job) {
-            abort(404);
-        }
-
-        return $job;
+        return $this->belongsTo(Employer::class);
     }
 }
