@@ -48,6 +48,7 @@
       <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-800 mb-6 leading-tight">
         {{ $heading }}
       </h1>
+
       <div class="text-lg sm:text-xl text-gray-600 mb-10">
         {{ $slot }}
       </div>
@@ -60,6 +61,20 @@
       &copy; 2025 MyWebsite. All rights reserved.
     </div>
   </footer>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @if(session('success'))
+      <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: "{{ session('success') }}",
+              showConfirmButton: false,
+              timer: 2000
+          });
+      </script>
+  @endif
 
   <!-- Script for Mobile Menu -->
   <script>
