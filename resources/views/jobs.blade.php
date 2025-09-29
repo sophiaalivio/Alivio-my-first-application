@@ -3,6 +3,12 @@
         @foreach($jobs as $job)
             <a href="/jobs/{{ $job->id }}" class="block bg-white hover:shadow-lg transition border border-gray-200 rounded-lg p-6 mb-6">
                 <div class="flex justify-between items-center mb-2">
+                    <div>  
+                        <h3 class ="text-md font-bold text-gray-700 mb-1">
+                           {{ $job->employer->name}}
+
+                        </h3>
+                </div>
                     <h2 class="text-xl font-semibold text-gray-800">{{ $job->title }}</h2>
                     <span class="text-sm text-green-600 font-bold">
                         @if(is_numeric($job->salary))
@@ -24,5 +30,8 @@
                 </div>
             </a>
         @endforeach
+    </div>
+    <divclass="mt-6">
+    {{ $jobs->links() }}
     </div>
 </x-layout>
